@@ -30,23 +30,31 @@ def print(students)
   letter = gets.chomp
   # conditional for whether a letter is entered or not
   if letter.empty?
-    students.each_with_index do |student, index|
-      if student[:name].length < 12
-        puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    i = 0
+    while students.length > i do
+      if students[i][:name].length < 12
+        puts "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+        i += 1
+      else
+        i += 1
       end
     end
   else
     letter.upcase!
-    students.each_with_index do |student, index|
-      if student[:name][0] == letter && student[:name].length < 12
-        puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    i = 0
+    while students.length > i do
+      if students[i][:name][0] == letter && students[i][:name].length < 12
+        puts "#{i+1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+        i += 1
+      else
+        i += 1 
       end
     end
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students (whose name is shorter than 12 characters)."
+  puts "Overall, we have #{students.count} great students)."
 end
 
 students = input_students
