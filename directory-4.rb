@@ -23,10 +23,19 @@ def print_header
 end
 
 def print(students)
+  i = 0
+  while students.length > i do
+    puts "#{i+1}. #{students[i][:name]} #{students[i][:cohort]} cohort"
+    i += 1
+  end
+end
+
+=begin
   students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
+=end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
