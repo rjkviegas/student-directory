@@ -25,27 +25,28 @@ end
 def print(students)
   puts "Please enter the letter you want all the names listed to begin with: "
   puts "For ALL names to be listed, just hit return"
+  puts "(Only names shorter than 12 character will be printed)"
   # get a letter
   letter = gets.chomp
   # conditional for whether a letter is entered or not
   if letter.empty?
     students.each_with_index do |student, index|
-      puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+      if student[:name].length < 12
+        puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+      end
     end
   else
     letter.upcase!
     students.each_with_index do |student, index|
-      if student[:name][0] == letter
+      if student[:name][0] == letter && student[:name].length < 12
         puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
-      else
-        next
       end
     end
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students (whose name is shorter than 12 characters)."
 end
 
 students = input_students
