@@ -108,17 +108,31 @@ end
 
 def print_footer(students)
   center "Overall, we have #{students.count} great students)."
-end
-
-#def default_value(array)
-#  array.map! do |x|
-    
+end 
   
 students = input_students_information
+
+students_by_cohort_month = {}
+
+students.each do |student|
+  month = student[:info][0]
+  name = student[:name]
+
+  if students_by_cohort_month[month] == nil
+    students_by_cohort_month[month] = []
+  end
+
+  students_by_cohort_month[month] << name
+end
+
+puts students_by_cohort_month
+
+
+
 # nothing happens until we call the methods
-print_header
-print(students)
-print_footer(students)
+# print_header
+# print(students)
+# print_footer(students)
 
 # puts students
 
