@@ -15,23 +15,11 @@ def input_students
   end
 end
 
-def print_header
-  puts "The students of my cohort at Makers Academy"
-  puts "-------------"
-end
-
-def print_students_list
-  if @students.count > 0
-    @students.each do |student|
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  else
-    puts "Error! There are no students to list."
+def interactive_menu
+  loop do
+    print_menu
+    process(gets.chomp)
   end
-end
-
-def print_footer
-  puts "Overall, we have #{@students.count} great students"
 end
 
 def print_menu
@@ -40,7 +28,7 @@ def print_menu
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
-def show_students
+def show_students 
   print_header
   print_students_list
   print_footer
@@ -59,11 +47,23 @@ def process(selection)
   end
 end
 
-def interactive_menu
-  loop do
-    print_menu
-    process(gets.chomp)
+def print_header
+  puts "The students of my cohort at Makers Academy"
+  puts "-------------"
+end
+
+def print_students_list
+  if @students.count > 0
+    @students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
+  else
+    puts "Error! There are no students to list."
   end
+end
+
+def print_footer
+  puts "Overall, we have #{@students.count} great students"
 end
 
 interactive_menu
