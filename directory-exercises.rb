@@ -10,27 +10,27 @@ def input_students_information
   # create array of months of the year for cohorts options
   months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
   # get the first name
-  name = gets.chomp
+  name = gets.chop
   # while the name is not empty, repeat this code
   while !name.empty? do
     center "Please input the cohort month eg. november"
     # get the cohort month
-    month = gets.chomp.upcase!
+    month = gets.chop.upcase!
     # cohort only added if found in month array
     until months.include?(month) do
       center "User input does not match possible options, please input again:"
-      month = gets.chomp.upcase!
+      month = gets.chop.upcase!
     end
     center "Cohort month of #{month} saved for #{name}."
     center "Please enter #{name}'s country of birth:"
     # get the students country of birth
-    country = gets.chomp
+    country = gets.chop
     # spellcheck for student's country input
     center "Is your spelling correct: (#{country})? Enter Yes or No"
-    check = gets.chomp.upcase!
+    check = gets.chop.upcase!
     if check != "YES"
       center "Please re-input with desired spelling"
-      country = gets.chomp
+      country = gets.chop
     else
       center "Entry confirmed"
     end
@@ -41,13 +41,13 @@ def input_students_information
     center "#{name}'s country of birth is #{country}."
     center "Please enter #{name}'s favourite hobby:"
     # get the students hobby
-    hobby = gets.chomp
+    hobby = gets.chop
     # spellcheck for student's hobby input
     center "Is your spelling correct: (#{hobby})? Enter Yes or No"
-    check = gets.chomp.upcase!
+    check = gets.chop.upcase!
     if check != "YES"
       center "Please re-input with desired spelling"
-      hobby = gets.chomp
+      hobby = gets.chop
     else
       center "Entry confirmed"
     end
@@ -62,7 +62,7 @@ def input_students_information
     center "Now we have #{students.count} students."
     center "Enter a new student's name OR to finish adding student hit 'return'"
     # gets another name from the user or break out of while loop
-    name = gets.chomp
+    name = gets.chop
   end
   # return the array of students
   students
@@ -78,7 +78,7 @@ def print(students)
   center "FOR ALL NAMES AND INFORMATION TO BE LISTED HIT 'RETURN'"
   center "Please note: only student names shorter than 12 character long will be printed"
   # get a letter
-  letter = gets.chomp
+  letter = gets.chop
   # conditional for whether a letter is entered or not
   if letter.empty?
     # iteration over students array using while loop
