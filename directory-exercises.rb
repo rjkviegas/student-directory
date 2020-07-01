@@ -107,7 +107,11 @@ def print(students)
 end
 
 def print_footer(students)
-  center "Overall, we have #{students.count} great students)."
+  if students.count != 1
+    center "Overall, we have #{students.count} great students."
+  else
+    center "Overall, we have #{students.count} great student."
+  end
 end 
   
 students = input_students_information
@@ -125,14 +129,13 @@ students.each do |student|
   students_by_cohort_month[month] << name
 end
 
+center "See below for student(s) grouped by cohort (month)"
 puts students_by_cohort_month
 
-
-
 # nothing happens until we call the methods
-# print_header
-# print(students)
-# print_footer(students)
+print_header
+print(students)
+print_footer(students)
 
 # puts students
 
