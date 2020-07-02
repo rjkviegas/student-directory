@@ -1,12 +1,14 @@
 @students = [] # an empty array accessible to all methods
 
+require 'csv'
+
 def action_successful
   puts "Action successful"
 end
 
 def get_file
   puts "Input file name:"
-  gets.chomp
+  user_file = STDIN.gets.chomp
 end
 
 def add_students(name, cohort="november")
@@ -84,7 +86,7 @@ end
 def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
-
+=begin
 def save_students(user_file="student.csv")
   # open the file for writing 
   File.open(user_file, "w"){|file|
@@ -97,18 +99,29 @@ def save_students(user_file="student.csv")
   }
   action_successful
 end
+=end
 
-def load_students(user_file = "students.csv")
-  File.open(user_file, "r"){|file|
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
+def save_students(user_file="students.csv")
+  CSV.open(user_file, "w") do |csv|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv << student_data
+    end
+  end
+end
+    
+def load_students(user_file="students.csv")
+  # CSV.open(user_file, "r")
+  CSV.foreach(user_file) do |row|
+    row_string = row.compact.join(',')
+    name, cohort = row_string.chomp.split(',')
     add_students(name, cohort)
   end
-  }
   action_successful
   puts "Loaded students from #{user_file}"   
 end
 
+  
 def load_students_file
   filename = ARGV.first # first argument from the command line
   if filename.nil? # use default file (students.csv) if a file isn't given
