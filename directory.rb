@@ -6,7 +6,7 @@ end
 
 def get_file
   puts "Input file name:"
-  file = gets.chomp
+  gets.chomp
 end
 
 def add_students(name, cohort="november")
@@ -86,27 +86,27 @@ def print_footer
 end
 
 def save_students(user_file="student.csv")
-  # open the file for writing
-  file = File.open(user_file, "w")
+  # open the file for writing 
+  File.open(user_file, "w"){|file|
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+  }
   action_successful
 end
 
 def load_students(user_file = "students.csv")
-  file = File.open(user_file, "r")
+  File.open(user_file, "r"){|file|
   file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
+    name, cohort = line.chomp.split(',')
     add_students(name, cohort)
   end
-  file.close
+  }
   action_successful
-  puts "Loaded #{@students.count} students from #{user_file}"   
+  puts "Loaded students from #{user_file}"   
 end
 
 def load_students_file
