@@ -1,5 +1,9 @@
 @students = [] # an empty array accessible to all methods
 
+def action_successful
+  puts "Action successful"
+end
+
 def add_students(name, cohort="november")
   @students << { name: name, cohort: cohort.to_sym}
 end
@@ -86,6 +90,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  action_successful
 end
 
 def load_students(filename = "students.csv")
@@ -95,6 +100,7 @@ def load_students(filename = "students.csv")
     add_students(name, cohort)
   end
   file.close
+  action_successful
   puts "Loaded #{@students.count} students from #{filename}"   
 end
 
