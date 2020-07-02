@@ -95,20 +95,20 @@ def load_students(filename = "students.csv")
     add_students(name, cohort)
   end
   file.close
+  puts "Loaded #{@students.count} students from #{filename}"   
 end
 
-def try_load_students
+def load_students_file
   filename = ARGV.first # first argument from the command line
   if filename.nil? # use default file (students.csv) if a file isn't given
     load_students
   elsif File.exists?(filename) # if it exists
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
     puts "Sorry, #{filename} doesn't exist."
     exit # quit the program
   end
 end
 
-try_load_students
+load_students_file
 interactive_menu
